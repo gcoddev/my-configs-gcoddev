@@ -357,7 +357,7 @@ neofetch
 #Keyboard and Wallpaper
 alias latam='setxkbmap latam && echo "Keyboard set latam"'
 alias us='setxkbmap us && echo "Keyboard set us"'
-alias bg-y='feh --bg-fill /usr/share/backgrounds/arcolinux/Yakys.jpg'
+alias bg-y='feh --bg-fill /usr/share/backgrounds/Yakys.jpg'
 alias bg-r='feh --bg-fill --randomize /usr/share/backgrounds/archWallpapers/*'
 
 alias off='shutdown -h now'
@@ -379,3 +379,4 @@ alias psql-status='echo "PostgreSql status: " && sudo systemctl is-active postgr
 alias php-v='php -v'
 alias php-7='export PATH=/opt/lampp/bin:$PATH && echo "php version changed to php7"'
 alias php-8='export PATH=/usr/bin:$PATH && echo "php version changed to php8"'
+alias ky='cat ~/.ky'
