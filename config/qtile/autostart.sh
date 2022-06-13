@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Fondo de pantalla
-feh --bg-fill --randomize /usr/share/backgrounds/archWallpapers/* &
+feh --bg-fill /usr/share/backgrounds/archWallpapers/arch1.jpg &
 # Iconos del sistema
 udiskie -t &
 nm-applet &
