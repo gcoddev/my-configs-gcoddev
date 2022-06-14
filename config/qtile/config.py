@@ -39,23 +39,23 @@ keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "Left", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "Right", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "Down", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "Up", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "Left", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key([mod, "shift"], "Right", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key([mod, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "Left", lazy.layout.grow_left(), desc="Grow window to the left"),
+    Key([mod, "control"], "Right", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([mod, "control"], "Down", lazy.layout.grow_down(), desc="Grow window down"),
+    Key([mod, "control"], "Up", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -67,7 +67,7 @@ keys = [
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
     ),
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    #Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
@@ -86,6 +86,7 @@ keys = [
     # My Configs
     Key([mod], "Return", lazy.spawn('alacritty'), desc="Launch terminal"),
     Key([mod, "shift"], "Return", lazy.spawn('thunar'), desc='Archivos'),
+    #Key([mod], "m", lazy.spawn("rofi -combi-modi drun -show combi -icon-theme "Papirus" -show-icons"), desc="Abrir menu"),
     Key([mod], "m", lazy.spawn("rofi -show drun"), desc="Abrir menu"),
     Key([mod, 'shift'], "m", lazy.spawn("rofi -show"), desc="Abrir abiertos"),
     Key([mod], "x", lazy.spawn("archlinux-logout"), desc="logout"),
@@ -93,7 +94,7 @@ keys = [
 ]
 
 #groups = [Group(i) for i in "123456789"]
-groups = [Group(i) for i in ["  ", "  ", " 爵 ", "  ", "  ", "  ", "  ", " 甆 ", "  ",]]
+groups = [Group(i) for i in ["  ", "  ", " 爵 ", "  ", "  ", " 辶 ", " ﱘ ", " 甆 ", "  ",]]
 
 for i, group in enumerate(groups):
     numDesktop=str(i+1)
@@ -133,6 +134,7 @@ def init_colors():
             ["#cacaca", "#cacaca"], # color 9
             ["#0066ff", "#0066ff"], # color 10
             ["#999999", "#999999"], # color 11
+            ["#dddddd", "#dddddd"], # color 12
 	   ]
 
 colors = init_colors()
@@ -180,7 +182,7 @@ screens = [
                 widget.GroupBox(
                     border_width = 1,
                     disable_drag = True,
-                    fontsize = 20,
+                    fontsize = 24,
                     foreground = colors[3],
                     highlight_method = 'block',
                     background = colors[0],
@@ -191,8 +193,8 @@ screens = [
                     margin_y = 3,
                     other_current_screen_border = colors[1],
                     other_screen_border = colors[1],
-                    this_current_screen_border = colors[2],
-                    this_screen_border = colors[2],
+                    this_current_screen_border = colors[12],
+                    this_screen_border = colors[12],
                     urgent_alert_border = 'block',
                     urgent_border = colors[3],
                 ),
@@ -231,7 +233,7 @@ screens = [
                 
                 widget.TextBox(
                     text="",
-                    foreground=colors[9],
+                    foreground=colors[2],
                     padding = 0,
                     fontsize = 22
                 ),
@@ -239,19 +241,19 @@ screens = [
                     font="FontAwesome",
                     text="   ",
                     foreground=colors[1],
-                    background=colors[9],
+                    background=colors[2],
                     padding = 0,
                     fontsize=16
                 ),
                 widget.Clock(
                     format="%Y-%m-%d %a %I:%M %p",
-                    background=colors[9],
+                    background=colors[2],
                     foreground=colors[1],
                     font='Noto Sans Bold'
                 ),
                 widget.TextBox(
                     text="",
-                    foreground=colors[9],
+                    foreground=colors[2],
                     padding = 0,
                     fontsize = 22
                 ),
@@ -349,18 +351,18 @@ screens = [
                 
                 widget.TextBox(
                     text="",
-                    foreground=colors[2],
+                    foreground=colors[9],
                     padding = 0,
                     fontsize = 22
                 ),
                 widget.Systray(
-                    background=colors[2],
+                    background=colors[9],
                     icon_size=20,
                     padding=5
                 ),
                 widget.TextBox(
                     text="",
-                    foreground=colors[2],
+                    foreground=colors[9],
                     padding = 0,
                     fontsize = 22
                 ),    
