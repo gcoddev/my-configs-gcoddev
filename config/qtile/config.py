@@ -147,7 +147,7 @@ layouts = [
         border_normal = colors[1],
         border_normal_stack = colors[10],
         border_width = 2,
-        margin = 4
+        margin = 5
     ),
     layout.Max(
         border_focus = colors[10],
