@@ -1,28 +1,4 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# From Gary Apaza - GCodDev
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -36,9 +12,6 @@ mod = "mod4"
 terminal = guess_terminal()
 
 keys = [
-    # A list of available commands that can be bound to keys can be found
-    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
-    # Switch between windows
     Key([mod], "Left", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "Right", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "Down", lazy.layout.down(), desc="Move focus down"),
@@ -86,15 +59,14 @@ keys = [
     # My Configs
     Key([mod], "Return", lazy.spawn('alacritty'), desc="Launch terminal"),
     Key([mod, "shift"], "Return", lazy.spawn('thunar'), desc='Archivos'),
-    #Key([mod], "m", lazy.spawn("rofi -combi-modi drun -show combi -icon-theme "Papirus" -show-icons"), desc="Abrir menu"),
-    Key([mod], "m", lazy.spawn("rofi -show drun"), desc="Abrir menu"),
+    #Key([mod], "m", lazy.spawn("rofi -show drun"), desc="Abrir menu"),
+    Key([mod], "m", lazy.spawn("rofi -show drun combi -icon-theme 'We10X' -show-icons"), desc="Abrir menu"),
     Key([mod, 'shift'], "m", lazy.spawn("rofi -show"), desc="Abrir abiertos"),
     Key([mod], "x", lazy.spawn("archlinux-logout"), desc="logout"),
-    Key([mod, "shift"], "g", lazy.spawn("google-chrome-stable"), desc="Abrir google chrome"),
 ]
 
 #groups = [Group(i) for i in "123456789"]
-groups = [Group(i) for i in ["  ", "  ", " 爵 ", "  ", "  ", " 辶 ", " ﱘ ", " 甆 ", "  ",]]
+groups = [Group(i) for i in ["  ", " ﬏ ", "  ", "  ", "  ", "  ", " 辶 ", "  ", "  ",]]
 
 for i, group in enumerate(groups):
     numDesktop=str(i+1)
@@ -133,8 +105,9 @@ def init_colors():
             ["#46d9ff", "#46d9ff"], # color 8
             ["#cacaca", "#cacaca"], # color 9
             ["#0066ff", "#0066ff"], # color 10
-            ["#999999", "#999999"], # color 11
+            ["#555555", "#555555"], # color 11
             ["#dddddd", "#dddddd"], # color 12
+            ["#000000", "#000000"], # color 13
 	   ]
 
 colors = init_colors()
@@ -187,30 +160,30 @@ screens = [
                     highlight_method = 'block',
                     background = colors[0],
                     padding = 0,
-                    active = colors[10],
+                    active = colors[2],
                     inactive = colors[11],
                     margin_x = 0,
                     margin_y = 3,
                     other_current_screen_border = colors[1],
                     other_screen_border = colors[1],
-                    this_current_screen_border = colors[12],
-                    this_screen_border = colors[12],
+                    this_current_screen_border = colors[13],
+                    this_screen_border = colors[13],
                     urgent_alert_border = 'block',
                     urgent_border = colors[3],
                 ),
                 widget.Prompt(),
                 widget.Sep(
-                    background = colors[3],
-                    foreground = colors[3]
+                    background = colors[8],
+                    foreground = colors[8]
                 ),
                 widget.CurrentLayout(
-                    background = colors[3],
+                    background = colors[8],
                     font = "Noto Sans Bold",
                     foreground = colors[1]
                 ),
                 widget.TextBox(
                     text="",
-                    foreground=colors[3],
+                    foreground=colors[8],
                     padding = 0,
                     fontsize = 22
                 ),
@@ -239,14 +212,14 @@ screens = [
                 ),
                 widget.TextBox(
                     font="FontAwesome",
-                    text="   ",
+                    text="  ",
                     foreground=colors[1],
                     background=colors[2],
                     padding = 0,
                     fontsize=16
                 ),
                 widget.Clock(
-                    format="%Y-%m-%d %a %I:%M %p",
+                    format="%H:%M:%S",
                     background=colors[2],
                     foreground=colors[1],
                     font='Noto Sans Bold'
@@ -254,6 +227,38 @@ screens = [
                 widget.TextBox(
                     text="",
                     foreground=colors[2],
+                    padding = 0,
+                    fontsize = 22
+                ),
+
+                widget.Sep(
+                    background = colors[0],
+                    foreground = colors[0]
+                ),
+
+                widget.TextBox(
+                    text="",
+                    foreground=colors[12],
+                    padding = 0,
+                    fontsize = 22
+                ),
+                widget.TextBox(
+                    font="FontAwesome",
+                    text="  ",
+                    foreground=colors[1],
+                    background=colors[12],
+                    padding = 0,
+                    fontsize=16
+                ),
+                widget.Clock(
+                    format="%a %p %d-%m-%Y",
+                    background=colors[12],
+                    foreground=colors[1],
+                    font='Noto Sans Bold'
+                ),
+                widget.TextBox(
+                    text="",
+                    foreground=colors[12],
                     padding = 0,
                     fontsize = 22
                 ),
@@ -271,7 +276,7 @@ screens = [
                 ),
                 widget.TextBox(
                     font="FontAwesome",
-                    text=" ",
+                    text="  ",
                     foreground=colors[1],
                     background=colors[6],
                     padding = 0,
@@ -280,7 +285,7 @@ screens = [
                 widget.Memory(
                     foreground = colors[1],
                     background = colors[6],
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                    mouse_callbacks = {'Button2': lazy.spawn('alacritty -e htop')},
                     fmt = 'Mem: {}',
                     padding = 5,
                     font = 'Noto Sans Bold'
@@ -335,7 +340,7 @@ screens = [
                     foreground = colors[1],
                     background = colors[4],
                     padding = 5,
-                    format = '{percent:2.0%} {hour:d}:{min:02d}'
+                    format = '{percent:2.0%} - {hour:d}:{min:02d}'
                 ),
 	            widget.TextBox(
                     text="",
@@ -351,18 +356,18 @@ screens = [
                 
                 widget.TextBox(
                     text="",
-                    foreground=colors[9],
+                    foreground=colors[13],
                     padding = 0,
                     fontsize = 22
                 ),
                 widget.Systray(
-                    background=colors[9],
+                    background=colors[13],
                     icon_size=20,
                     padding=5
                 ),
                 widget.TextBox(
                     text="",
-                    foreground=colors[9],
+                    foreground=colors[13],
                     padding = 0,
                     fontsize = 22
                 ),    
