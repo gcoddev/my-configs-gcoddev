@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Fondo de pantalla
-feh --bg-fill /usr/share/backgrounds/archWallpapers/Arch1.jpg &
+feh --bg-fill /usr/share/backgrounds/archWallpapers/Arch2.png &
 # Iconos del sistema
 notify-send "Bienvenido de nuevo Gary" &
 udiskie -t &
