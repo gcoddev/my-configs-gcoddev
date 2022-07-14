@@ -58,11 +58,13 @@ keys = [
 
     # My Configs
     Key([mod], "Return", lazy.spawn('alacritty'), desc="Launch terminal"),
-    Key([mod, "shift"], "Return", lazy.spawn('thunar'), desc='Archivos'),
+    #Key([mod, "shift"], "Return", lazy.spawn('thunar'), desc='Archivos'),
+    Key([mod, "shift"], "Return", lazy.spawn('nautilus'), desc='Archivos'),
     #Key([mod], "m", lazy.spawn("rofi -show drun"), desc="Abrir menu"),
     Key([mod], "m", lazy.spawn("rofi -show drun combi -icon-theme 'We10X' -show-icons"), desc="Abrir menu"),
     Key([mod, 'shift'], "m", lazy.spawn("rofi -show"), desc="Abrir abiertos"),
     Key([mod], "x", lazy.spawn("archlinux-logout"), desc="logout"),
+    Key([mod], "s", lazy.spawn("gnome-screenshot -w"), desc="Screenshot"),
 ]
 
 #groups = [Group(i) for i in "123456789"]
@@ -98,8 +100,8 @@ def init_colors():
             ["#1c1f24", "#1c1f24"], # color 1
             ["#ffffff", "#ffffff"], # color 2
             ["#FF5555", "#FF5555"], # color 3
-            ["#98be65", "#98be65"], # color 4
-            ["#da8548", "#da8548"], # color 5
+            ["#98ff65", "#98ff65"], # color 4
+            ["#ff7038", "#ff7038"], # color 5
             ["#51afef", "#51afef"], # color 6
             ["#c678dd", "#c678dd"], # color 7
             ["#46d9ff", "#46d9ff"], # color 8
@@ -121,7 +123,7 @@ layouts = [
         border_normal = colors[1],
         border_normal_stack = colors[10],
         border_width = 2,
-        margin = 5
+        margin = 3
     ),
     layout.Max(
         border_focus = colors[10],
@@ -206,108 +208,128 @@ screens = [
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 
                 widget.TextBox(
-                    text="",
-                    foreground=colors[2],
+                    text="",
+                    foreground=colors[14],
                     padding = 0,
                     fontsize = 22
                 ),
                 widget.TextBox(
                     font="FontAwesome",
-                    text="  ",
+                    text=" ",
                     foreground=colors[1],
-                    background=colors[2],
-                    padding = 0,
+                    background=colors[14],
+                    padding = 1,
                     fontsize=16
                 ),
                 widget.Clock(
                     format="%H:%M:%S",
-                    background=colors[2],
+                    background=colors[14],
                     foreground=colors[1],
                     font='Noto Sans Bold'
                 ),
                 widget.TextBox(
-                    text="",
-                    foreground=colors[2],
-                    padding = 0,
-                    fontsize = 22
-                ),
-
-                widget.Sep(
-                    background = colors[0],
-                    foreground = colors[0]
-                ),
-
-                widget.TextBox(
-                    text="",
-                    foreground=colors[12],
+                    text="",
+                    foreground=colors[3],
+                    background=colors[14],
                     padding = 0,
                     fontsize = 22
                 ),
                 widget.TextBox(
                     font="FontAwesome",
-                    text="  ",
+                    text=" ",
                     foreground=colors[1],
-                    background=colors[12],
-                    padding = 0,
+                    background=colors[3],
+                    padding = 1,
                     fontsize=16
                 ),
                 widget.Clock(
                     format="%a %p %d-%m-%Y",
-                    background=colors[12],
+                    background=colors[3],
                     foreground=colors[1],
                     font='Noto Sans Bold'
                 ),
                 widget.TextBox(
-                    text="",
-                    foreground=colors[12],
-                    padding = 0,
-                    fontsize = 22
-                ),
-                
-                widget.Sep(
-                    background = colors[0],
-                    foreground = colors[0]
-                ),
-                         
-                widget.TextBox(
-                    text="",
+                    text="",
                     foreground=colors[6],
+                    background=colors[3],
                     padding = 0,
                     fontsize = 22
                 ),
                 widget.TextBox(
                     font="FontAwesome",
-                    text="  ",
+                    text=" ",
                     foreground=colors[1],
                     background=colors[6],
+                    padding = 1,
+                    fontsize = 16
+                ),
+                widget.Net(
+                    foreground = colors[1],
+                    background = colors[6],
+                    fmr = '{}',
+                    padding = 5,
+                    font = 'Noto Sans Bold',
+                    prefix = 'M'
+                ),
+                widget.TextBox(
+                    text="",
+                    foreground=colors[10],
+                    background=colors[6],
                     padding = 0,
+                    fontsize = 22
+                ),
+                widget.TextBox(
+                    font="FontAwesome",
+                    text=" ",
+                    foreground=colors[1],
+                    background=colors[10],
+                    padding = 1,
                     fontsize = 16
                 ),
                 widget.Memory(
                     foreground = colors[1],
-                    background = colors[6],
+                    background = colors[10],
                     mouse_callbacks = {'Button2': lazy.spawn('alacritty -e htop')},
                     fmt = 'Mem: {}',
                     padding = 5,
                     font = 'Noto Sans Bold'
                 ),
                 widget.TextBox(
-                    text="",
-                    foreground=colors[6],
+                    text="",
+                    foreground=colors[5],
+                    background=colors[10],
                     padding = 0,
                     fontsize = 22
                 ),
-                         
-                widget.Sep(
-                    background = colors[0],
-                    foreground = colors[0]
-                ),
-                
                 widget.TextBox(
-                    text="",
+                    font="FontAwesome",
+                    text=" ",
+                    foreground=colors[1],
+                    background=colors[5],
+                    padding = 1,
+                    fontsize = 16
+                ),
+                widget.CPU(
+                    foreground = colors[1],
+                    background = colors[5],
+                    fmt = '{}',
+                    padding = 5,
+                    font = 'Noto Sans Bold'
+                ),
+                widget.TextBox(
+                    text="",
                     foreground=colors[7],
+                    background=colors[5],
                     padding = 0,
                     fontsize = 22
+                ),
+                widget.TextBox(
+                    font="FontAwesome",
+                    text=" ",
+                    foreground=colors[1],
+                    background=colors[7],
+                    padding = 1,
+                    fontsize=16
                 ),
                 widget.Volume(
                     foreground = colors[1],
@@ -316,23 +338,21 @@ screens = [
                     padding = 5,
                     font = 'Noto Sans Bold',
                 ),
-                widget.TextBox(
-                    text="",
-                    foreground=colors[7],
-                    padding = 0,
-                    fontsize = 22
-                ),
                          
-                widget.Sep(
-                    background = colors[0],
-                    foreground = colors[0]
-                ),
-                
                 widget.TextBox(
-                    text="",
+                    text="",
                     foreground=colors[4],
+                    background=colors[7],
                     padding = 0,
                     fontsize = 22
+                ),
+                widget.TextBox(
+                    font="FontAwesome",
+                    text=" ",
+                    foreground=colors[1],
+                    background=colors[4],
+                    padding = 1,
+                    fontsize=16
                 ),
                 widget.Battery(
                     font="Noto Sans Bold",
@@ -343,21 +363,11 @@ screens = [
                     padding = 5,
                     format = '{percent:2.0%} - {hour:d}:{min:02d}'
                 ),
-	            widget.TextBox(
-                    text="",
-                    foreground=colors[4],
-                    padding = 0,
-                    fontsize = 22
-                ),
-                         
-                widget.Sep(
-                    background = colors[0],
-                    foreground = colors[0]
-                ),
                 
                 widget.TextBox(
-                    text="",
+                    text="",
                     foreground=colors[13],
+                    background=colors[4],
                     padding = 0,
                     fontsize = 22
                 ),
@@ -366,12 +376,6 @@ screens = [
                     icon_size=20,
                     padding=5
                 ),
-                widget.TextBox(
-                    text="",
-                    foreground=colors[13],
-                    padding = 0,
-                    fontsize = 22
-                ),    
                 
                 #widget.QuickExit(),
             ],
